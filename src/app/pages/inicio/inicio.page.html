@@ -2,12 +2,45 @@
   <ion-toolbar>
     <ion-title>inicio</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment value="qr" (ionChange)="cambiarComponente($event)">
+      <ion-segment-button value="qr">
+        <ion-label>
+          QR
+        </ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="miclase">
+        <ion-label>
+          Mi Clase
+        </ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="foro">
+        <ion-label>
+          Foro
+        </ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="misdatos">
+        <ion-label>
+          Mis Datos
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <app-qr [hidden]="componente_actual !== 'qr'">
+  </app-qr>
+
+  <app-miclase [hidden]="componente_actual !== 'miclase'">
+  </app-miclase>
+
+  <app-foro [hidden]="componente_actual !== 'foro'">
+  </app-foro>
+
+  <app-misdatos [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
 </ion-content>
