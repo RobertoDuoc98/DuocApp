@@ -1,0 +1,7 @@
+{
+  "name": "DuocApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
