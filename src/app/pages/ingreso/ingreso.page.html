@@ -1,13 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>ingreso</ion-title>
+<ion-header>
+  <ion-toolbar class="headercolor">
+    <div #titulo class="centratit">
+      <ion-buttons slot="start">
+        <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+      
+        <ion-title class="ion-text-center">
+          Sistema de asistencia Duoc
+        </ion-title>
+
+      </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ingreso</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="background">
+  
+  <div style="height: 100%; display: flex; align-items: center; justify-content:center;">
+    <!--CARD-->
+    <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+
+      <!-- TITULO -->
+      <ion-card-title class="ion-text-center">
+        <ion-label>
+          <h1 class="azul">Bienvenid@</h1>
+        </ion-label>
+      </ion-card-title>
+
+      <!-- FORMULARIO -->
+      <form >
+        <!-- CONTENIDO DEL CARD -->
+        <ion-card-content>
+          
+          <!-- CORREO -->
+          <ion-item class="ingrdat">
+            <ion-input name="correo" email label="Correo" labelPlacement="floating" type="text" [(ngModel)]="usuario.correo"></ion-input>
+          </ion-item>
+          <br>
+          <!-- CONTRASEÑA -->
+          <ion-item class="ingrdat">
+            <ion-input name="password"  label="Contraseña" labelPlacement="floating" type="password" [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+          <br>
+          <ion-button class="botonduoc ion-auto" (click)="ingresar()">Ingresar</ion-button>
+
+        </ion-card-content>
+      </form>
+      <ion-label>
+        <a class="azul" routerLink="" (click)="correo()">Recupera tu contraseña</a>
+        
+      </ion-label>
+    </ion-card>
+  </div>
+  
 </ion-content>
+

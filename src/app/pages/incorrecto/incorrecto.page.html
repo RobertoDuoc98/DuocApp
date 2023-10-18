@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>incorrecto</ion-title>
+<ion-header>
+  <ion-toolbar class="headercolor">
+    <div class="centratit">
+      <ion-buttons slot="start">
+        <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+        Asistencia Duoc
+      </ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">incorrecto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="background" [fullscreen]="true">
+  <div style="height: 80%; display: flex; align-items: center; justify-content:center;">
+    <ion-card class="colorcard1">
+      <div style="display: flex; align-items: center; justify-content:center;">
+        <ion-img class="imagena ion-padding-vertical" src="assets/img/fotoincorrect.png"></ion-img>
+      </div>
+      <ion-card-title>
+        <ion-label class="ion-text-center">
+          <!--mensaje-->
+          <h1 class="azul">No fue posible recuperar tu contraseña</h1>
+        </ion-label>
+      </ion-card-title>
+      <ion-card-content class="ion-text-center">
+        <ion-button class="botonduoc" (click)="ingreso()">Ingresar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>correo</ion-title>
+<ion-header>
+  <ion-toolbar class="headercolor">
+    <ion-title>
+      <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content class="background">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">correo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+
+  <div style="height: 80%; display: flex; align-items: center; justify-content:center;">
+    <ion-card class="colorcard1 ion-text-center">
+      <ion-card-title class="azul ion-text-center">
+        <h1>Sistema de asistencia Duoc</h1>
+        <ion-label>
+          <h3 class="azul">Recuperar contraseña</h3>
+          <br>
+          <h2 class="azul">Paso 1: Ingresa tu correo</h2>
+        </ion-label>
+      </ion-card-title>
+
+      <!-- Contenido del card -->
+      <form>
+        <ion-card-content>
+          <ion-item class="ingrdat">
+            <ion-input email name="correo" label="Correo" labelPlacement="floating" type="text" [(ngModel)]="usuario.correo"></ion-input>
+          </ion-item>
+          <br>
+          
+          <ion-button class="botonduoc ion-auto" (click)="ingresar()">Recuperar contraseña</ion-button>
+        <br>
+        <a class="azul" routerLink="" (click)="ingreso()">Iniciar sesión</a>
+        </ion-card-content>
+      </form>
+
+    </ion-card>
+  </div>
+  
 </ion-content>
