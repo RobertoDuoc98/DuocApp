@@ -18,7 +18,7 @@ import { AnimationController} from '@ionic/angular';
 export class IngresoPage implements OnInit, AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
- 
+
   public usuario: Usuario;
 
   // CGV: Para poder trabajar con Router y poder navegar hacia la página "home", debemos primero pasar como
