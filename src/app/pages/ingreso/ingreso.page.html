@@ -1,56 +1,46 @@
 <ion-header>
   <ion-toolbar class="headercolor">
-    <div #titulo class="centratit">
+    <div class="centratit">
       <ion-buttons slot="start">
         <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
-      
         <ion-title class="ion-text-center">
           Sistema de asistencia Duoc
         </ion-title>
-
       </ion-buttons>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="background">
-  
+
   <div style="height: 100%; display: flex; align-items: center; justify-content:center;">
-    <!--CARD-->
     <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
 
       <!-- TITULO -->
       <ion-card-title class="ion-text-center">
         <ion-label>
-          <h1 class="azul">Bienvenid@</h1>
+          <h2 class="azul">Bienvenid@</h2>
         </ion-label>
       </ion-card-title>
 
-      <!-- FORMULARIO -->
-      <form >
-        <!-- CONTENIDO DEL CARD -->
-        <ion-card-content>
-          
-          <!-- CORREO -->
-          <ion-item class="ingrdat">
-            <ion-input name="correo" email label="Correo" labelPlacement="floating" type="text" [(ngModel)]="usuario.correo"></ion-input>
-          </ion-item>
-          <br>
-          <!-- CONTRASEÑA -->
-          <ion-item class="ingrdat">
-            <ion-input name="password"  label="Contraseña" labelPlacement="floating" type="password" [(ngModel)]="usuario.password"></ion-input>
-          </ion-item>
-          <br>
-          <ion-button class="botonduoc ion-auto" (click)="ingresar()">Ingresar</ion-button>
+      <ion-item class="ingrdat">
+        <ion-input  [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item class="ingrdat">
+        <ion-input [(ngModel)]="password" type="password" label="Contraseña" labelPlacement="floating"></ion-input>
+      </ion-item>
 
-        </ion-card-content>
-      </form>
+      <ion-button class="botonduoc ion-auto" (click)="ingresar()">Ingresar</ion-button>
+      
+<br>
       <ion-label>
-        <a class="azul" routerLink="" (click)="correo()">Recupera tu contraseña</a>
+        <a class="azul" routerLink="" (click)="recuperar()">Recupera tu contraseña</a>
         
       </ion-label>
     </ion-card>
-  </div>
-  
-</ion-content>
+    
 
+  </div>
+
+</ion-content>

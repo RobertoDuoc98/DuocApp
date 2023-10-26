@@ -1,15 +1,14 @@
-<ion-header>
-  <ion-toolbar class="headercolor">
-    <div #titulo class="centratit">
-      <ion-buttons slot="start">
-        <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
-      </ion-buttons>
+<ion-toolbar class="headercolor">
+  <div #titulo class="centratit">
+    <ion-buttons slot="start">
+      <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+    
       <ion-title class="ion-text-center">
         Asistencia Duoc
       </ion-title>
-    </div>
-  </ion-toolbar>
-</ion-header>
+    </ion-buttons>
+  </div>
+</ion-toolbar>
 
 <ion-content class="background" [fullscreen]="true">
 
@@ -17,29 +16,28 @@
     <ion-card class="colorcard1 ion-text-center">
       <ion-card-title class="azul ion-padding-top">
         <ion-label class="ion-text-center">
-          <h1 class="azul">¡Bienvenido!</h1>
+          <h1 class="azul">¡Bienvenid@!</h1>
+          <!--NOMBRE USUARIO-->
           <br>
           <h2 class="azul">Paso 2: Responde la pregunta secreta</h2>
-          
-          <br>
-          <h2 class="azul" *ngIf="usuario"> {{ usuario.nombre }} {{usuario.apellido}}</h2>
-          <h4 class="azul" *ngIf="usuario">{{usuario.pregunta}}</h4>
         </ion-label>
       </ion-card-title>
+  
+      <!--FALTA PONER LA PREGUNTA, VALIDAR LA CONTRASEÑA, Y QUE TE ARROJE A PAGINA CORRECTA-->
 
-      <form>
-        <!-- Contenido del card -->
-        <ion-card-content>
+
+<p class="azul"> {{ preguntaSecreta }}</p>
+      <ion-card-content>
           <ion-item class="ingrdat">
-            <ion-input name="respuesta" label="Respuesta" labelPlacement="floating" type="text" [(ngModel)]="usuario.respuesta"></ion-input>
+            <ion-input name="respuesta" label="Respuesta" labelPlacement="floating" type="text" [(ngModel)]="respuestaUsuario"></ion-input>
           </ion-item>
           <br>
-          <ion-button class="botonduoc" (click)="ingresar()">Recuperar contraseña</ion-button>
+          <ion-button class="botonduoc" (click)="verificarRespuesta()">Recuperar contraseña</ion-button>
           <br>
-          <a class="azul" routerLink="" (click)="ingreso()">Iniciar sesión</a>
+          <a class="azul" routerLink="" (click)="ingresar()">Iniciar sesión</a>
         </ion-card-content>
-      </form>
+
     </ion-card>
   </div>
-</ion-content>
+</ion-content> 
 

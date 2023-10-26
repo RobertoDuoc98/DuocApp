@@ -1,3 +1,33 @@
-<p>
-  qr works!
-</p>
+
+
+<ion-content class="background" [fullscreen]="true">
+
+  <div style="height: 100%; display: flex; align-items: center; justify-content:center;">
+    <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+    <h1 class="azul">
+      ¡Bienvenido(a)! 
+    </h1>
+    <h2 class="azul">
+      {{ usuario.nombre }} {{ usuario.apellido }}
+    </h2>
+
+  <ion-card-content>
+    
+    <ion-button class="botonduoc ion-auto" *ngIf="!escaneando" (click)="comenzarEscaneoQR()">
+      <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      Comenzar Escaneo de QR
+    </ion-button>
+
+    <ion-button class="botonduoc ion-auto" *ngIf="escaneando" (click)="detenerEscaneoQR()">
+      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+      Detener escaneo de QR
+    </ion-button>
+
+    <video #video [hidden]="!escaneando" width="100%"></video>
+    <canvas #canvas hidden></canvas>
+
+  </ion-card-content>
+ </ion-card>
+</div>
+
+</ion-content>

@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ingresoGuard } from './guards/ingreso-guard.guard';
+import { inicioGuard } from './guards/inicio-guard.guard';
 
 export const routes: Routes = [
   {
@@ -8,11 +10,13 @@ export const routes: Routes = [
   },
   {
     path: 'ingreso',
-    loadComponent: () => import('./pages/ingreso/ingreso.page').then( m => m.IngresoPage)
+    loadComponent: () => import('./pages/ingreso/ingreso.page').then( m => m.IngresoPage),
+    canActivate: [ingresoGuard]
   },
   {
     path: 'inicio',
-    loadComponent: () => import('./pages/inicio/inicio.page').then( m => m.InicioPage)
+    loadComponent: () => import('./pages/inicio/inicio.page').then( m => m.InicioPage),
+    canActivate: [inicioGuard]
   },
   {
     path: 'correo',

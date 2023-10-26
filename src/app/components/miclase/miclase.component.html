@@ -1,3 +1,67 @@
-<p>
-  miclase works!
-</p>
+<ion-content class="background" [fullscreen]="true">
+  <div style="height: 100%; display: flex; align-items: center; justify-content:center;">
+    <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+      <ion-card-subtitle class="azul">
+        <h2>DATOS DE LA ASIGNATURA</h2>
+      </ion-card-subtitle>
+          
+          <ion-card-content class="borde">
+              <ion-grid fixed class="azul">
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Sede:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.sede}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Sigla de asignatura:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.idAsignatura}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Sección:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.seccion}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Nombre asignatura:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.nombreAsignatura}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Nombre profesor:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.nombreProfesor}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Día:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.dia}}</ion-col>
+                </ion-row>
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Bloque de inicio:</ion-col>
+                  <ion-col size="6" class="datos">
+                    <span *ngIf="asistencia.bloqueInicio > 0">
+                    {{ asistencia.bloqueInicio }}
+                  </span>
+                </ion-col>
+                </ion-row>
+
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Bloque de término:</ion-col>
+                  <ion-col size="6" class="datos">
+                    <span *ngIf="asistencia.bloqueTermino > 0">
+                    {{ asistencia.bloqueTermino }}
+                  </span>
+                </ion-col>
+                </ion-row>
+
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Hora de inicio:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.horaInicio }}</ion-col>
+                </ion-row>
+
+                <ion-row style="text-align: center;">
+                  <ion-col size="6" class="datos">Hora de término:</ion-col>
+                  <ion-col size="6" class="datos">{{asistencia.horaFin}}</ion-col>
+                </ion-row>
+
+              </ion-grid>
+          </ion-card-content>
+
+        </ion-card>
+  </div>
+</ion-content>

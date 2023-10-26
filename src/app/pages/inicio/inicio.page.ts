@@ -1,43 +1,48 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, AnimationController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
+import { QrComponent } from 'src/app/components/qr/qr.component';
 import { MiclaseComponent } from 'src/app/components/miclase/miclase.component';
 import { ForoComponent } from 'src/app/components/foro/foro.component';
 import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.component';
-import { QrComponent } from 'src/app/components/qr/qr.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { ApiClientService } from 'src/app/services/api-client.service';
 
+import { AnimationController} from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    QrComponent,
-    MiclaseComponent,
-    ForoComponent,
-    MisdatosComponent
-  ]
+  imports: [IonicModule, CommonModule, FormsModule,
+  QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent]
 })
 export class InicioPage implements OnInit {
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
+
   componente_actual = 'qr';
 
-  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
-    @ViewChild('video')
-  private video!: ElementRef;
-
-  @ViewChild('canvas')
-  private canvas!: ElementRef;
-
-  constructor(private animationController: AnimationController) { }
+  constructor(
+    private authService: AuthService, 
+    private bd: DataBaseService,
+    private api: ApiClientService,
+    private animationController: AnimationController) { }
 
   ngOnInit() {
+    this.authService.primerInicioSesion.subscribe(esPrimerInicioSesion => {
+      this.componente_actual = 'qr';
+      this.bd.datosQR.next('');
+    });
   }
 
+  cambiarComponente(nombreComponente: string) {
+    this.componente_actual = nombreComponente;
+    if (nombreComponente === 'foro') this.api.cargarPublicaciones();
+    if (nombreComponente === 'misdatos') this.authService.leerUsuarioAutenticado();
+  }
   public animateItem(elementRef: any) {
     this.animationController
       .create()
@@ -60,8 +65,8 @@ export class InicioPage implements OnInit {
       animation.play();
     }
   }
-
-  cambiarComponente(event: any){
-    this.componente_actual = event.detail.value;
+  cerrarSesion() {
+    this.authService.logout();
   }
+
 }

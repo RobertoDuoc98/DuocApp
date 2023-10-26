@@ -11,37 +11,38 @@
     </div>
   </ion-toolbar>
 
-  <ion-toolbar>
-    <ion-segment value="qr" (ionChange)="cambiarComponente($event)">
-      <ion-segment-button value="qr">
+  <ion-toolbar >
+    <ion-segment class="segmento" [(ngModel)]="componente_actual"  (ngModelChange)="cambiarComponente($event)">
+      <ion-segment-button value="qr" class="titulo-seg">
         <ion-label>
           QR
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="miclase">
+      <ion-segment-button value="miclase" class="titulo-seg">
         <ion-label>
           Mi Clase
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="foro">
+      <ion-segment-button value="foro" class="titulo-seg">
         <ion-label>
           Foro
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="misdatos">
+      <ion-segment-button value="misdatos" class="titulo-seg">
         <ion-label>
           Mis Datos
         </ion-label>
       </ion-segment-button>
+      <!-- </ion-segment>-->
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-qr [hidden]="componente_actual !== 'qr'">
+  <app-qr [hidden]="componente_actual !== 'qr'" (qrCapturado)="cambiarComponente('miclase')">
   </app-qr>
 
   <app-miclase [hidden]="componente_actual !== 'miclase'">
@@ -52,3 +53,11 @@
 
   <app-misdatos [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="botonduoc" (click)="cerrarSesion()" expand="block" fill="clear" shape="round">
+      Cerrar sesión
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

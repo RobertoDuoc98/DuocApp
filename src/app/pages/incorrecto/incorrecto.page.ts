@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-incorrecto',
@@ -14,12 +16,16 @@ import { ActivatedRoute, Router,NavigationExtras } from '@angular/router';
 })
 export class IncorrectoPage implements OnInit {
 
-  constructor(private router: Router) { }
+  correo: string = '';
+  password: string = '';
+  
+  constructor(private router: Router, private dbService: DataBaseService, private authService: AuthService) { }
 
   ngOnInit() {
   }
-  public ingreso(){
-    this.router.navigate(['/ingreso'])
+
+  ingresar() {
+    this.authService.login(this.correo, this.password);
   }
 
 }
