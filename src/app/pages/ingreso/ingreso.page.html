@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="headercolor">
-    <div class="centratit">
+    <div #titulo class="centratit">
       <ion-buttons slot="start">
         <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
         <ion-title class="ion-text-center">
@@ -23,24 +23,24 @@
         </ion-label>
       </ion-card-title>
 
+      <ion-card-content>
       <ion-item class="ingrdat">
         <ion-input  [(ngModel)]="correo" type="text" label="Correo" labelPlacement="floating"></ion-input>
       </ion-item>
+
       <br>
       <ion-item class="ingrdat">
         <ion-input [(ngModel)]="password" type="password" label="Contraseña" labelPlacement="floating"></ion-input>
       </ion-item>
+    </ion-card-content>
 
       <ion-button class="botonduoc ion-auto" (click)="ingresar()">Ingresar</ion-button>
-      
-<br>
+  <br>
       <ion-label>
         <a class="azul" routerLink="" (click)="recuperar()">Recupera tu contraseña</a>
-        
       </ion-label>
     </ion-card>
     
 
   </div>
-
 </ion-content>
