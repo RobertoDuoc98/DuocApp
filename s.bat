@@ -79,12 +79,12 @@ call :ver "[2] COMPILAR Y EJECUTAR APLICACION EN ANDROID"
 set host=""
 set port=""
 set target=""
-set /p host="Introduce direccion IP de tu equipo (default: 192.168.100.34): "
-if %host%=="" set "host=192.168.100.34"
+set /p host="Introduce direccion IP de tu equipo (default: 192.168.1.173): "
+if %host%=="" set "host=192.168.1.173"
 set /p port="Introduce el puerto (default: 8100): "
 if %port%=="" set port=8100
-set /p target="Introduce el nombre del dispositivo (default: R58T614VCGP): "
-if %target%=="" set "target=R58T614VCGP"
+set /p target="Introduce el nombre del dispositivo (default: R58T41E5FTY): "
+if %target%=="" set "target=R58T41E5FTY "
 call :ver "COMPILAR APLICACION: ionic build"
 call ionic build
 echo *************************************************************
