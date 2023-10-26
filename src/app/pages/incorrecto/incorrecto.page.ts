@@ -25,7 +25,7 @@ export class IncorrectoPage implements OnInit {
   }
 
   ingresar() {
-    this.authService.login(this.correo, this.password);
+    this.router.navigate(['/ingreso']);
   }
 
 }
