@@ -1,9 +1,11 @@
-<ion-content [fullscreen]="true">
-  <a #topOfPage href="#topOfPage"></a>
-  <ion-card>
-
+<ion-content class="background" [fullscreen]="true">
+  
+  <!--CREAR PUBLICACION-->
+  <div style=" display: flex; align-items: center; justify-content:center;">
+  <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+    
     <ion-card-header>
-      <ion-card-title>Ingresa tu publicación</ion-card-title>
+      <ion-card-title class="azul">Ingresa tu publicación</ion-card-title>
     </ion-card-header>
 
     <ion-item class="ion-padding-horizontal">
@@ -15,16 +17,21 @@
     </ion-item>
 
     <div class="alinear-centro">
-      <ion-button (click)="limpiarPublicacion()">Limpiar</ion-button>
-      <ion-button (click)="guardarPublicacion()">Guardar</ion-button>
+      <ion-button class="botonduoc ion-auto" (click)="limpiarPublicacion()">Limpiar</ion-button>
+      <ion-button class="botonduoc ion-auto" (click)="guardarPublicacion()">Guardar</ion-button>
     </div>
 
   </ion-card>
 
-  <ion-card class="sin-bordes">
-    <ion-card-title class="con-padding-top">Publicaciones recientes</ion-card-title>
-  </ion-card>
+</div>
+  <!--FIN CREAR-->
 
+<!--PUBLICACIONES ANTERIORES-->
+<div style="display: flex; align-items: center; justify-content:center;">
+
+  <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+    <ion-card-title class="azul">Publicaciones recientes</ion-card-title>
+  
   <ion-card *ngFor="let pub of publicaciones">
 
     <ion-card-header>
@@ -38,18 +45,20 @@
       {{ pub.contenido }}
     </ion-card-content>
 
+    <!--BOTONES-->
     <div class="alinear-derecha">
-
-      <ion-button (click)="editarPublicacion(pub)">
+      <ion-button class="botonduoc ion-auto" (click)="editarPublicacion(pub)">
         Editar
       </ion-button>
 
-      <ion-button (click)="eliminarPublicacion(pub)">
+      <ion-button class="botonduoc ion-auto" (click)="eliminarPublicacion(pub)">
         Eliminar
       </ion-button>
-
     </div>
-
+    <!--FIN BOTONES-->
   </ion-card>
+<!--FIN PUBLICACIONES ANTERIORES-->
+</ion-card>
+</div>
 
 </ion-content>
