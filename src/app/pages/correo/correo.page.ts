@@ -16,23 +16,24 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CorreoPage implements OnInit {
   
-  correo: string = '';
+  correo: string = 'atorres@duocuc.cl';
   password: string = '';
+  usuarioValidado: any;
 
   constructor(private router: Router, private dbService: DataBaseService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   async verificarCorreo() {
-    const usuario = await this.dbService.leerUsuario(this.correo);
-    if (usuario) {
+    this.usuarioValidado = await this.dbService.leerUsuario(this.correo);
+    if (this.usuarioValidado) {
       this.router.navigate(['/pregunta']);
     } else {
       this.router.navigate(['/incorrecto']);
     }
   }
+
   ingresar() {
     this.router.navigate(['/ingreso']);
   }
-  
 }
