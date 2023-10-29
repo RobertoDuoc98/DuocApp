@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
+import {Usuario} from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-pregunta',
@@ -16,24 +17,27 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PreguntaPage implements OnInit {
 
-  password: string = '';
-  correo: string = '';
+  correo: string = 'atorres@duocuc.cl';
+  respuestaSecreta: string = '';
   preguntaSecreta: string = '';
-  respuestaUsuario: string = '';
-  usuario: string = '';
-
+  nombreUsuario: string = '';
+  usuarioValidado: Usuario | null = null;
 
   constructor(private router: Router, private dbService: DataBaseService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    // Obtén la pregunta secreta y el nombre de usuario del servicio AuthService
+  this.preguntaSecreta = this.authService.getPreguntaSecreta();
+  this.nombreUsuario = this.authService.getNombreUsuario();
   }
 
   async verificarRespuesta() {
     const usuario = await this.dbService.leerUsuario(this.correo);
-    if (usuario && usuario.preguntaSecreta === this.preguntaSecreta && usuario.respuestaSecreta === this.respuestaUsuario) {
-      this.router.navigate(['/correcto']);
+    if (usuario && usuario.respuestaSecreta === this.respuestaSecreta) {
+      this.authService.setContraseñaUsuario(usuario.password);
+      this.router.navigate(['/correcto']); // Respuesta secreta válida, redirige a "correcto"
     } else {
-      this.router.navigate(['/incorrecto']);
+      this.router.navigate(['/incorrecto']); // Respuesta secreta incorrecta, redirige a "incorrecto"
     }
   }
 

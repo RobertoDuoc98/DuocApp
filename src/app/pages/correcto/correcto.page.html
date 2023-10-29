@@ -1,15 +1,14 @@
-<ion-header>
-  <ion-toolbar class="headercolor">
-    <div class="centratit">
-      <ion-buttons slot="start">
-        <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
-      </ion-buttons>
+<ion-toolbar class="headercolor">
+  <div #titulo class="centratit">
+    <ion-buttons slot="start">
+      <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+    
       <ion-title class="ion-text-center">
-        Asistencia Duoc
+        Sistema de Asistencia Duoc
       </ion-title>
-    </div>
-  </ion-toolbar>
-</ion-header>
+    </ion-buttons>
+  </div>
+</ion-toolbar>
 
 <ion-content class="background" [fullscreen]="true">
   <div style="height: 80%; display: flex; align-items: center; justify-content:center;">
@@ -19,15 +18,13 @@
       </div>
       <ion-card-title>
         <ion-label class="ion-text-center">
-          <!--imagen-->
-          <h1 class="azul">¡Bienvenido!</h1>
-          <!--<h4 class="azul">{{ usuario.nombre }} {{ usuario.apellido }}</h4>
-          <h4 class="azul">Tu contraseña es: {{ contraseña }}</h4>-->
+          <h2 class="azul">Tu contraseña es: </h2>
+          <h1 class="azul"> {{ password }} </h1>
         </ion-label>
       </ion-card-title>
       <ion-card-content class="ion-text-center">
-        <!--<ion-button class="botonduoc ion-auto" (click)="ingreso()">Ingresar</ion-button>-->
-      </ion-card-content>
+        <ion-button class="botonduoc" (click)="ingresar()">Ingresar</ion-button> 
+       </ion-card-content>
     </ion-card>
   </div>
 

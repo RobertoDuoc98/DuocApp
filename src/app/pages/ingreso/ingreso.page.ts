@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router'; // Permite navegar y pasar parámetros
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class IngresoPage implements OnInit {
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
 
   correo = 'atorres@duocuc.cl';
   password = '1234';
