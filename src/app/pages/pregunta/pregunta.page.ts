@@ -21,9 +21,9 @@ export class PreguntaPage implements OnInit {
   respuestaSecreta: string = '';
   preguntaSecreta: string = '';
   nombreUsuario: string = '';
-  usuarioValidado: Usuario | null = null;
 
-  constructor(private router: Router, private dbService: DataBaseService, private authService: AuthService) { }
+
+  constructor(private router: Router, private bd: DataBaseService, private authService: AuthService) { }
 
   ngOnInit(): void {
     // Obtén la pregunta secreta y el nombre de usuario del servicio AuthService
@@ -32,14 +32,28 @@ export class PreguntaPage implements OnInit {
   }
 
   async verificarRespuesta() {
-    const usuario = await this.dbService.leerUsuario(this.correo);
-    if (usuario && usuario.respuestaSecreta === this.respuestaSecreta) {
-      this.authService.setContraseñaUsuario(usuario.password);
-      this.router.navigate(['/correcto']); // Respuesta secreta válida, redirige a "correcto"
+
+    console.log('Respuesta secreta ingresada:', this.respuestaSecreta);
+
+    const usuario = await this.bd.leerUsuario(this.correo);
+
+    if (usuario) {
+      console.log('Respuesta secreta almacenada en la base de datos:', usuario.respuestaSecreta);
+    
+      if (usuario.respuestaSecreta === this.respuestaSecreta) {
+        console.log('La respuesta secreta es válida.');
+        this.authService.setContraseñaUsuario(usuario.password);
+        this.router.navigate(['/correcto']); // Respuesta secreta válida, redirige a "correcto"
+      } else {
+        console.log('La respuesta secreta es incorrecta.');
+        this.router.navigate(['/incorrecto']); // Respuesta secreta incorrecta, redirige a "incorrecto"
+      }
     } else {
-      this.router.navigate(['/incorrecto']); // Respuesta secreta incorrecta, redirige a "incorrecto"
+      console.log('Usuario no encontrado en la base de datos.');
+      this.router.navigate(['/incorrecto']); // Usuario no encontrado, redirige a "incorrecto"
     }
   }
+  
 
   ingresar() {
     this.router.navigate(['/ingreso']);

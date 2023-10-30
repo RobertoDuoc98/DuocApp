@@ -14,6 +14,7 @@ import jsQR, { QRCode } from 'jsqr';
 import { BarcodeFormat, BarcodeScanner, ScanResult } from '@capacitor-mlkit/barcode-scanning';
 import { MessageEnum } from 'src/app/tools/message-enum';
 
+import { AnimationController} from '@ionic/angular';
 
 @Component({
   selector: 'app-qr',
@@ -28,6 +29,10 @@ export class QrComponent  implements OnInit {
   @ViewChild('canvas') private canvas!: ElementRef;
   @Output() qrCapturado: EventEmitter<string> = new EventEmitter();
 
+  @ViewChild('itemBienve', { read: ElementRef }) itemBienve!: ElementRef;
+  @ViewChild('itemUsuario', { read: ElementRef }) itemUsuario!: ElementRef;
+
+
   usuario = new Usuario();
   public asistencia: Asistencia = new Asistencia();
   public escaneando = false;
@@ -39,7 +44,8 @@ export class QrComponent  implements OnInit {
     private authService: AuthService,
     private bd: DataBaseService,
     private sqliteService: SqliteService,
-    private readonly ngZone: NgZone
+    private readonly ngZone: NgZone,
+    private animationController: AnimationController
   ) { }
 
   ngOnInit() {
@@ -169,6 +175,47 @@ export class QrComponent  implements OnInit {
       if (error.message.includes('canceled')) return Promise.resolve('');
       console.log('ERROR EN escanearQRNativo CATCH ' + error.message);
       return Promise.resolve('ERROR: No fue posible leer el código QR');
+    }
+  }
+
+
+  /////// ANIMACIONES /////////
+
+  public ngAfterViewInit(): void {
+    // Animación para el título de bienvenida
+    if (this.itemBienve) {
+      const animationBienve = this.animationController
+        .create()
+        .addElement(this.itemBienve.nativeElement)
+        .duration(4000)
+        .fromTo('transform', 'translate(-100%)', 'translate(100%)')
+        .fromTo('opacity', 1, 1);
+  
+      animationBienve.play();
+  
+      setTimeout(() => {
+        animationBienve.stop();
+      }, 4000);
+    }
+  
+    // Animación para el nombre de usuario
+    if (this.itemUsuario) {
+      const animationUsuario = this.animationController
+        .create()
+        .addElement(this.itemUsuario.nativeElement)
+        .duration(2000)
+        .iterations(Infinity)
+        .keyframes([
+          { offset: 0, transform: 'scale(2)' }, 
+          { offset: 0.5, transform: 'scale(1)' }, 
+          { offset: 1, transform: 'scale(1)' }  
+        ]);
+  
+      animationUsuario.play();
+
+      setTimeout(() => {
+        animationUsuario.stop();
+      }, 1000);
     }
   }
 

@@ -43,28 +43,22 @@ export class InicioPage implements OnInit {
     if (nombreComponente === 'foro') this.api.cargarPublicaciones();
     if (nombreComponente === 'misdatos') this.authService.leerUsuarioAutenticado();
   }
-  public animateItem(elementRef: any) {
-    this.animationController
-      .create()
-      .addElement(elementRef)
-      .iterations(1)
-      .duration(600)
-      .fromTo('transform', 'translate(100%)', 'translate(0%)')
-      .play();
-  }
+    ////// ANIMACION TITULO  /////////
   public ngAfterViewInit(): void {
     if (this.itemTitulo) {
       const animation = this.animationController
         .create()
         .addElement(this.itemTitulo.nativeElement)
         .iterations(Infinity)
-        .duration(3000)
+        .duration(8000)
         .fromTo('transform', 'translate(-100%)', 'translate(100%)')
         .fromTo('opacity', 1, 1);
 
       animation.play();
     }
   }
+
+
   cerrarSesion() {
     this.authService.logout();
   }
