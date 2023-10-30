@@ -32,29 +32,24 @@ export class PreguntaPage implements OnInit {
   }
 
   async verificarRespuesta() {
-
     console.log('Respuesta secreta ingresada:', this.respuestaSecreta);
-
     const usuario = await this.bd.leerUsuario(this.correo);
-
+    
     if (usuario) {
       console.log('Respuesta secreta almacenada en la base de datos:', usuario.respuestaSecreta);
-    
       if (usuario.respuestaSecreta === this.respuestaSecreta) {
         console.log('La respuesta secreta es válida.');
         this.authService.setContraseñaUsuario(usuario.password);
-        this.router.navigate(['/correcto']); // Respuesta secreta válida, redirige a "correcto"
+        this.router.navigate(['/correcto']); 
       } else {
         console.log('La respuesta secreta es incorrecta.');
-        this.router.navigate(['/incorrecto']); // Respuesta secreta incorrecta, redirige a "incorrecto"
+        this.router.navigate(['/incorrecto']); 
       }
     } else {
       console.log('Usuario no encontrado en la base de datos.');
       this.router.navigate(['/incorrecto']); // Usuario no encontrado, redirige a "incorrecto"
     }
   }
-  
-
   ingresar() {
     this.router.navigate(['/ingreso']);
   }

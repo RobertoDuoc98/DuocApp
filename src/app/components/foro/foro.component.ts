@@ -111,3 +111,10 @@ export class ForoComponent  implements OnInit {
   }
 
 }
+
+
+
+/// ACTIVAR JSON SERVER ////
+// TERMINAL BASH ///
+// cd _JSON-SERVER //
+// npx json-server --watch publicaciones.json //

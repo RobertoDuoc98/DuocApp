@@ -203,7 +203,7 @@ export class QrComponent  implements OnInit {
       const animationUsuario = this.animationController
         .create()
         .addElement(this.itemUsuario.nativeElement)
-        .duration(2000)
+        .duration(3000)
         .iterations(Infinity)
         .keyframes([
           { offset: 0, transform: 'scale(2)' }, 
@@ -215,7 +215,7 @@ export class QrComponent  implements OnInit {
 
       setTimeout(() => {
         animationUsuario.stop();
-      }, 1000);
+      }, 2000);
     }
   }
 

@@ -35,6 +35,7 @@ export class CorreoPage implements OnInit {
       // Asignar nombre, apellido y pregunta secreta antes de navegar
       this.authService.setPreguntaSecreta(this.usuarioValidado.preguntaSecreta);
       this.authService.setNombreUsuario(`${this.usuarioValidado.nombre} ${this.usuarioValidado.apellido}`);
+      
       console.log('Pregunta secreta asignada:', this.authService.getPreguntaSecreta());
       console.log('Nombre de usuario asignado:', this.authService.getNombreUsuario());
       this.router.navigate(['/pregunta']);
