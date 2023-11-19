@@ -35,5 +35,10 @@ export class IngresoPage implements OnInit {
   public recuperar(): void {
     this.router.navigate(['correo']);
   }
+
+  public registrarme(): void {
+    this.router.navigate(['registrarme']);
+  }
+  
   
 }

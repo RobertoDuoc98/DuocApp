@@ -93,8 +93,6 @@ export class AuthService {
 getContraseñaUsuario(): string {
   return this.contraseñaUsuario;
 }
-  
-  
 
   async logout() {
     this.leerUsuarioAutenticado().then((usuario) => {
