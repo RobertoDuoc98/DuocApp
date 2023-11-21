@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { QrComponent } from 'src/app/components/qr/qr.component';
 import { MiclaseComponent } from 'src/app/components/miclase/miclase.component';
 import { ForoComponent } from 'src/app/components/foro/foro.component';
+import { AdminComponent } from 'src/app/components/admin/admin.component'
+
 import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataBaseService } from 'src/app/services/data-base.service';
@@ -18,7 +20,7 @@ import { AnimationController} from '@ionic/angular';
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule,
-  QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent]
+  QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent, AdminComponent ]
 })
 export class InicioPage implements OnInit {
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
