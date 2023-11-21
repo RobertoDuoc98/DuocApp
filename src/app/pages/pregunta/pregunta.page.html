@@ -22,7 +22,7 @@
       </ion-card-title>
 
       <ion-card-content class="azul">
-        <h2>{{ nombreUsuario }}</h2>
+        
         <h3>{{ preguntaSecreta }}</h3>
       </ion-card-content>
 
@@ -31,7 +31,7 @@
             <ion-input name="respuesta" label="Respuesta" labelPlacement="floating" type="text" [(ngModel)]="respuestaSecreta"></ion-input>
           </ion-item>
           <br>
-          <ion-button class="botonduoc" (click)="verificarRespuesta()">Recuperar contraseña</ion-button>
+          <ion-button class="botonduoc" (click)="verificarRespuesta(respuestaSecreta)">Recuperar contraseña</ion-button>
           <br>
           <a class="azul" routerLink="" (click)="ingresar()">Iniciar sesión</a>
         </ion-card-content>

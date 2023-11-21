@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
 
 
 @Component({
@@ -16,14 +17,22 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CorrectoPage implements OnInit {
 
-  password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    // Obtén la contraseña del usuario
-    this.password = this.authService.getContraseñaUsuario();
+  constructor(private authService: AuthService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    private bd: DataBaseService) {
+      this.route.queryParams.subscribe((params: any) => {
+      this.password = params['password'];
+    });
   }
+
+
+  password = '';
+
+  ngOnInit() {
+  }
+
   ingresar() {
     this.router.navigate(['/ingreso']);
   }

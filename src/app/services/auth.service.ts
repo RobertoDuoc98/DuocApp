@@ -70,29 +70,6 @@ export class AuthService {
     })
   }
 
-  // Método para almacenar la pregunta secreta y el nombre del usuario
-  setPreguntaSecreta(preguntaSecreta: string) {
-    this.preguntaSecreta = preguntaSecreta;
-  }
-  setNombreUsuario(nombreUsuario: string) {
-    this.nombreUsuario = nombreUsuario;
-  }
-
-  // Métodos para obtener la pregunta secreta y el nombre del usuario
-  getPreguntaSecreta() {
-    return this.preguntaSecreta;
-  }
-  getNombreUsuario() {
-    return this.nombreUsuario;
-  }
- //Metodo para obtener la contraseña del usuario
- setContraseñaUsuario(contraseña: string) {
-  this.contraseñaUsuario = contraseña;
-}
-
-getContraseñaUsuario(): string {
-  return this.contraseñaUsuario;
-}
 
   async logout() {
     this.leerUsuarioAutenticado().then((usuario) => {

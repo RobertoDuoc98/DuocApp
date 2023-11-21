@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-correo',
@@ -16,33 +17,25 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CorreoPage implements OnInit {
   
-  correo: string = '';
-  password: string = '';
-  usuarioValidado: any;
-
-  preguntaSecreta: string = '';
-  nombreUsuario: string = '';
-
-  constructor(private router: Router, private bd: DataBaseService, private authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
+  correo = '';
   
-  async verificarCorreo() {
-    this.usuarioValidado = await this.bd.leerUsuario(this.correo);
-    if (this.usuarioValidado) {
-      console.log('Usuario válido:', this.usuarioValidado);
-      // Asignar nombre, apellido y pregunta secreta antes de navegar
-      this.authService.setPreguntaSecreta(this.usuarioValidado.preguntaSecreta);
-      this.authService.setNombreUsuario(`${this.usuarioValidado.nombre} ${this.usuarioValidado.apellido}`);
-      
-      console.log('Pregunta secreta asignada:', this.authService.getPreguntaSecreta());
-      console.log('Nombre de usuario asignado:', this.authService.getNombreUsuario());
-      this.router.navigate(['/pregunta']);
-    } else {
-      console.log('Usuario no válido');
-      this.router.navigate(['/incorrecto']);
+
+  constructor(private router: Router,
+     private bd: DataBaseService, 
+     private authService: AuthService) { }
+
+     ngOnInit() {
     }
+  
+  async verificarCorreo(correo: string) {
+    await this.bd.validarCorreo(correo).then(async (usuario : Usuario | undefined) => {
+      if (usuario){
+        this.router.navigate(['/pregunta'], {queryParams : {pregunta: usuario.preguntaSecreta}});
+        console.log(usuario)
+      } else {
+        this.router.navigate(['/incorrecto']);
+      }
+    });
   }
 
   ingresar() {
