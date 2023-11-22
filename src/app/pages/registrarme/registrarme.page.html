@@ -1,9 +1,30 @@
-<ion-content class="background" [fullscreen]="true">
+<ion-header [translucent]="true">
+  <ion-toolbar class="headercolor">
+    <div #titulo class="centratit">
+      <ion-buttons slot="start">
+        <ion-img class="imglogo" src="assets/img/DuocUC.svg.png"></ion-img>
+        
+        <ion-title class="ion-text-center">
+          Sistema de asistencia Duoc
+        </ion-title>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+
   <div style="height: 100%; display: flex; align-items: center; justify-content:center;">
     <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
-      <h1 class="azul">
-        Registro de usuario 
-      </h1>
+
+      <ion-card-title class="ion-text-center">
+        <ion-label>
+          <h2 class="azul"> 
+            Registro de usuario
+          </h2>
+        </ion-label>
+      </ion-card-title>
+
           <ion-card-content class="colorcard1">
             <ion-item>
               <ion-input type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" required></ion-input>

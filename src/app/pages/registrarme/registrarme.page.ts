@@ -1,5 +1,6 @@
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { AnimationController} from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
@@ -19,6 +20,7 @@ import { ToastController } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class RegistrarmePage implements OnInit {
+  @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
 
   usuario = new Usuario();
   repeticionPassword = '';
@@ -26,7 +28,8 @@ export class RegistrarmePage implements OnInit {
   constructor(private router: Router,
     private authService: AuthService,
     private toastController: ToastController, 
-    private bd: DataBaseService) { }
+    private bd: DataBaseService,
+    private animationController: AnimationController) { }
 
     ngOnInit() {
     }
@@ -81,4 +84,23 @@ export class RegistrarmePage implements OnInit {
     ingresar() {
       this.router.navigate(['/ingreso']);
     }
+
+
+
+
+
+      ////// ANIMACION TITULO  /////////
+  public ngAfterViewInit(): void {
+    if (this.itemTitulo) {
+      const animation = this.animationController
+        .create()
+        .addElement(this.itemTitulo.nativeElement)
+        .iterations(Infinity)
+        .duration(8000)
+        .fromTo('transform', 'translate(-100%)', 'translate(100%)')
+        .fromTo('opacity', 1, 1);
+
+      animation.play();
+    }
+  }
   }
