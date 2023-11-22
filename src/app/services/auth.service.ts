@@ -15,10 +15,6 @@ export class AuthService {
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
   primerInicioSesion = new BehaviorSubject<boolean>(false);
 
-  private preguntaSecreta: string = '';
-  private nombreUsuario: string = '';
-  private contraseñaUsuario: string = '';
-
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { 
     this.inicializarAutenticacion();
   }
@@ -69,7 +65,6 @@ export class AuthService {
       }
     })
   }
-
 
   async logout() {
     this.leerUsuarioAutenticado().then((usuario) => {

@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/model/usuario';
+import { showAlertDUOC, showToast } from 'src/app/tools/message-routines';
+
 
 @Component({
   selector: 'app-correo',
@@ -28,6 +30,12 @@ export class CorreoPage implements OnInit {
     }
   
   async verificarCorreo(correo: string) {
+    if (!this.correo.trim()) {
+      // Mostrar un mensaje de error o realizar alguna acción
+      showToast('El campo de correo no puede estar en blanco');
+      return;
+    }
+
     await this.bd.validarCorreo(correo).then(async (usuario : Usuario | undefined) => {
       if (usuario){
         this.router.navigate(['/pregunta'], {queryParams : {pregunta: usuario.preguntaSecreta}});

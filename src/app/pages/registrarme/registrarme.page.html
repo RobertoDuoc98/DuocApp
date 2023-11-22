@@ -6,36 +6,36 @@
       </h1>
           <ion-card-content class="colorcard1">
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" disabled="true"></ion-input>
+              <ion-input type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
+              <ion-input type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating"></ion-input>
+              <ion-input type="text" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta" labelPlacement="floating"></ion-input>
+              <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta" labelPlacement="floating"></ion-input>
+              <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating"></ion-input>
-            </ion-item>
+              <ion-input type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating" required></ion-input>
+            </ion-item> 
           
             <ion-item>
-              <ion-input type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña" labelPlacement="floating"></ion-input>
+              <ion-input type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña" labelPlacement="floating" required></ion-input>
             </ion-item>
           
             <br>
           
-              <ion-button class="botonduoc" (click)="actualizarPerfil()">
+              <ion-button class="botonduoc" (click)="registrarUsuario()">
                 Crear mi nueva cuenta
               </ion-button>
           

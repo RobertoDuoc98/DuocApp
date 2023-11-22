@@ -9,6 +9,8 @@ import { showAlertDUOC, showToast } from 'src/app/tools/message-routines';
 
 import { Router } from '@angular/router';
 
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-registrarme',
   templateUrl: './registrarme.page.html',
@@ -22,42 +24,61 @@ export class RegistrarmePage implements OnInit {
   repeticionPassword = '';
 
   constructor(private router: Router,
-    private authService: AuthService, 
+    private authService: AuthService,
+    private toastController: ToastController, 
     private bd: DataBaseService) { }
 
-  ngOnInit() {
-    this.authService.usuarioAutenticado.subscribe((usuario) => {
-      this.usuario = usuario? usuario : new Usuario();
-      this.repeticionPassword = usuario? usuario.password : '';
-    });
-  }
-
-  validarCampo(nombreCampo:string, valor: string) {
-    if (valor.trim() === '') {
-      showAlertDUOC(`Debe ingresar un valor para el campo "${nombreCampo}".`);
-      return false;
+    ngOnInit() {
     }
-    return true;
-  }
-
-  async actualizarPerfil() {
-    if (!this.validarCampo('nombre', this.usuario.nombre)) return;
-    if (!this.validarCampo('apellidos', this.usuario.apellido)) return;
-    if (!this.validarCampo('correo', this.usuario.correo)) return;
-    if (!this.validarCampo('pregunta secreta', this.usuario.preguntaSecreta)) return;
-    if (!this.validarCampo('respuesta secreta', this.usuario.respuestaSecreta)) return;
-    if (!this.validarCampo('contraseña', this.usuario.password)) return;
-    if (this.usuario.password !== this.repeticionPassword) {
-      showAlertDUOC(`Las contraseñas escritas deben ser iguales.`);
-      return;
+  
+    async registrarUsuario() {
+      // Validar campos
+      if (!this.validarCampos()) {
+        await showToast('Por favor, complete todos los campos.');
+        return;
     }
-    await this.bd.guardarUsuario(this.usuario);
-    this.authService.guardarUsuarioAutenticado(this.usuario);
-    showToast('Sus datos fueron actualizados');
+  
+      // Verificar si el correo electrónico ya está registrado
+      const usuarioExistente = await this.bd.validarCorreo(this.usuario.correo);
+      if (usuarioExistente) {
+        showToast('Este correo electrónico ya está registrado. Por favor, use otro.');
+        return;
+      }
+  
+      // Guardar el nuevo usuario en la base de datos
+      try {
+        await this.bd.guardarUsuario(this.usuario);
+        console.log('Usuario registrado con éxito', this.usuario);
+         showToast('Usuario registrado con éxito');
+  
+        this.router.navigate(['/ingreso']);
+      } catch (error) {
+        console.error('Error al registrar usuario', error);
+      }
+    }
+  
+    validarCampo(nombreCampo: string, valor: string) {
+      if (valor.trim() === '') {
+        showToast(`Debe ingresar un valor para el campo "${nombreCampo}".`);
+        return false;
+      }
+      return true;
+    }
+  
+    validarCampos(): boolean {
+      if (!this.validarCampo('nombre', this.usuario.nombre) ||
+          !this.validarCampo('apellidos', this.usuario.apellido) ||
+          !this.validarCampo('correo', this.usuario.correo) ||
+          !this.validarCampo('pregunta secreta', this.usuario.preguntaSecreta) ||
+          !this.validarCampo('respuesta secreta', this.usuario.respuestaSecreta) ||
+          !this.validarCampo('contraseña', this.usuario.password)) {
+        return false;
+      }
+  
+      return true;
+    }
+  
+    ingresar() {
+      this.router.navigate(['/ingreso']);
+    }
   }
-
-  ingresar() {
-    this.router.navigate(['/ingreso']);
-  }
-
-}

@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 import {Usuario} from 'src/app/model/usuario';
+import { SqliteService } from 'src/app/services/sqlite.service';
+import { showAlertDUOC, showToast } from 'src/app/tools/message-routines';
+
 
 @Component({
   selector: 'app-pregunta',
@@ -19,22 +22,31 @@ export class PreguntaPage implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router, 
-    private bd: DataBaseService, 
+    private bd: DataBaseService,
     private activatedRoute: ActivatedRoute) {
      const navigation = this.router.getCurrentNavigation();
      this.activatedRoute.queryParams.subscribe(params => {
      this.preguntaSecreta =params['pregunta'];
-     
      });
    }
 
- ngOnInit() {
- }
+   ngOnInit() {
+    this.authService.usuarioAutenticado.subscribe((usuario) => {
+      this.usuario = usuario? usuario : new Usuario();
+    });
+  }
+  
  public preguntaSecreta = '';
  usuario = new Usuario();
  respuestaSecreta = ''; 
 
   async verificarRespuesta(respuestaSecreta: string) {
+    // Validar que el campo de respuesta no esté en blanco
+    if (!this.respuestaSecreta.trim()) {
+      showToast('El campo de respuesta no puede estar en blanco');
+      return;
+    }
+    
     await this.bd.validarRespuesta(respuestaSecreta).then(async (usuario : Usuario | undefined) => {
       if (usuario){
         this.router.navigate(['/correcto'], {queryParams : {password: usuario.password}});

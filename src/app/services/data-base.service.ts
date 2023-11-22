@@ -102,12 +102,4 @@ async validarRespuesta(respuestaSecreta: string): Promise<Usuario | undefined> {
   return usuarios[0];
 }
 
-
-
-
-
-
-
-
-
 }
