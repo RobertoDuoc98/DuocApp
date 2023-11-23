@@ -33,9 +33,18 @@ export class DataBaseService {
   constructor(private sqliteService: SqliteService) { }
 
   async inicializarBaseDeDatos() {
-    await this.sqliteService.crearBaseDeDatos({database: this.nombreBD, upgrade: this.userUpgrades});
-    this.db = await this.sqliteService.abrirBaseDeDatos(this.nombreBD, false, 'no-encryption', 1, false);
-  }
+    await this.sqliteService.crearBaseDeDatos({ database: this.nombreBD, upgrade: this.userUpgrades });
+    this.db = await this.sqliteService.abrirBaseDeDatos(this.nombreBD, false, 'no-encryption', 1, false);}
+
+    // Crear el usuario administrador al inicializar la base de datos
+    
+    async crearUsuarioAdmin() {
+      const adminUsuario = new Usuario();
+      adminUsuario.setUsuario('admin@duocuc.cl', 'admin', 'Administrador del Sistema', '', '', '');
+  
+      await this.guardarUsuario(adminUsuario);
+    }
+  
 
   async crearUsuariosDePrueba() {
     await this.leerUsuario('atorres@duocuc.cl').then(async usuario => {
@@ -59,7 +68,7 @@ export class DataBaseService {
 
   async leerUsuarios() {
     const usuarios: Usuario[] = (await this.db.query('SELECT * FROM USUARIO;')).values as Usuario[];
-    this.listaUsuarios.next(usuarios);
+    return usuarios;
   }
 
   async leerUsuario(correo: string): Promise<Usuario | undefined> {

@@ -52,11 +52,11 @@ export class ForoComponent  implements OnInit {
 
   guardarPublicacion() {
     if (this.publicacion.titulo.trim() === '') {
-      showAlertDUOC('Antes de hacer una publicación debe llenar el título.');
+      showToast('Antes de hacer una publicación debe llenar el título.');
       return;
     }
     if (this.publicacion.contenido.trim() === '') {
-      showAlertDUOC('Antes de hacer una publicación debe llenar el contenido.');
+      showToast('Antes de hacer una publicación debe llenar el contenido.');
       return;
     }
     if (this.publicacion.id === '') {
@@ -69,7 +69,7 @@ export class ForoComponent  implements OnInit {
 
   editarPublicacion(pub: any) {
     if (pub.correo !== this.usuario.correo) {
-      showAlertDUOC('Sólo puede editar las publicaciones a su nombre');
+      showToast('Sólo puede editar las publicaciones a su nombre');
       return;
     }
     this.setPublicacion(pub.id, pub.correo, pub.nombre, pub.apellido, pub.titulo, pub.contenido);
@@ -77,7 +77,7 @@ export class ForoComponent  implements OnInit {
   }
 
   mensajePublicacion(accion: string, id: Publicacion) {
-    showAlertDUOC(`La publicación ${id} fue ${accion} correctamente`);
+    showToast(`La publicación ${id} fue ${accion} correctamente`);
     this.limpiarPublicacion();
   }
 
@@ -101,7 +101,7 @@ export class ForoComponent  implements OnInit {
 
   eliminarPublicacion(pub: any) {
     if (pub.correo !== this.usuario.correo) {
-      showAlertDUOC('Sólo puede eliminar las publicaciones a su nombre');
+      showToast('Sólo puede eliminar las publicaciones a su nombre');
       return;
     }
     this.api.eliminarPublicacion(pub.id).subscribe({

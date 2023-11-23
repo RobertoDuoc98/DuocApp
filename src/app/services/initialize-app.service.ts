@@ -29,6 +29,13 @@ export class InitializeAppService {
           if( this.sqliteService.platform === 'web') {
             await this.sqliteService.guardarNombreBaseDeDatos(this.dataBaseService.nombreBD);
           }
+
+          // Crear el usuario admin si aún no se ha creado
+          const adminUsuario = await this.dataBaseService.leerUsuario('admin@duocuc.cl');
+          if (!adminUsuario) {
+            await this.dataBaseService.crearUsuarioAdmin();
+          }
+          
           await this.authService.inicializarAutenticacion();
           this.isAppInit = true;
         });
@@ -37,5 +44,7 @@ export class InitializeAppService {
       log('inicializarAplicacion', error);
     };
   }
+
+
 
 }

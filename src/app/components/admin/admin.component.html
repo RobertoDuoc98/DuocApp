@@ -1,3 +1,32 @@
-<p>
-  admin works!
-</p>
+<ion-content class="background" [fullscreen]="true">
+  <!-- Otras secciones del contenido -->
+  
+  <!-- Sección para mostrar la lista de usuarios -->
+  <div style="display: flex; align-items: center; justify-content:center;">
+    <ion-card class="colorcard1 ion-text-center ion-padding-vertical">
+      <ion-card-title class="azul">Administrar usuarios</ion-card-title>
+
+      <ion-card *ngFor="let usuario of usuarios">
+        <ion-card-header>
+          <h4>{{ usuario.nombre }} {{ usuario.apellido }}</h4>
+          <p>{{ usuario.correo }}</p>
+        </ion-card-header>
+
+
+    
+        <div class="alinear-derecha">
+          <ion-button *ngIf="usuario.correo !== 'admin@duocuc.cl'" 
+          class="botonduoc ion-auto" 
+          (click)="eliminarUsuario(usuario)">
+
+            Eliminar
+            
+          </ion-button>
+
+        </div>
+
+   
+      </ion-card>
+    </ion-card>
+  </div>
+</ion-content>

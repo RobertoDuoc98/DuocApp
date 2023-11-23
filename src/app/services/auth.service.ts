@@ -14,6 +14,7 @@ export class AuthService {
   keyUsuario = 'USUARIO_AUTENTICADO';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
   primerInicioSesion = new BehaviorSubject<boolean>(false);
+ 
 
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { 
     this.inicializarAutenticacion();
@@ -44,11 +45,19 @@ export class AuthService {
     this.storage.remove(this.keyUsuario);
   }
 
+ 
   async login(correo: string, password: string) {
     await this.storage.get(this.keyUsuario).then( async (usuarioAutenticado) => {
       if (usuarioAutenticado) {
         this.usuarioAutenticado.next(usuarioAutenticado);
         this.primerInicioSesion.next(false);
+        // Verificar si el usuario es el administrador
+        if (usuarioAutenticado.correo === 'admin@duocuc.cl') {
+          // Mostrar todos los usuarios
+          this.bd.leerUsuarios().then(usuarios => {
+            console.log('Todos los usuarios:', usuarios);
+          });
+        }
         this.router.navigate(['inicio']);
       } else {
         await this.bd.validarUsuario(correo, password).then(async (usuario: Usuario | undefined) => {

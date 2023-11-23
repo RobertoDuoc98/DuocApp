@@ -21,7 +21,9 @@ export class IngresoPage implements OnInit {
   correo = 'atorres@duocuc.cl';
   password = '1234';
 
-  constructor(private router: Router,private bd: DataBaseService, private authService: AuthService) { }
+  constructor(private router: Router,
+    private bd: DataBaseService, 
+    private authService: AuthService) { }
 
   async ngOnInit() {
     this.bd.crearUsuariosDePrueba().then(async () => {

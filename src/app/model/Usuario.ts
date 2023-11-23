@@ -1,11 +1,11 @@
 export class Usuario {
 
-    correo = '';
-    password = '';
-    nombre = '';
-    apellido = '';
-    preguntaSecreta = '';
-    respuestaSecreta = '';
+  correo: string = '';
+  password: string = '';
+  nombre: string = '';
+  apellido: string = '';
+  preguntaSecreta: string = '';
+  respuestaSecreta: string = '';
   
     constructor() { }
   
