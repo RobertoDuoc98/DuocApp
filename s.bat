@@ -91,8 +91,8 @@ echo *************************************************************
 echo EJECUTAR APLICACION
 echo   Comando: ionic cap run android
 echo   Para usar live reload  : -l --external 
-echo   Para indicar tu equipo : --host=[IP de tu equipo]
-echo   Para indicar tu movil  : --target=[Nombre de tu movil]
+echo   Para indicar tu equipo : --host=[92.168.1.173]
+echo   Para indicar tu movil  : --target=[R58T41E5FTY]
 echo *************************************************************
 echo.
 echo.
