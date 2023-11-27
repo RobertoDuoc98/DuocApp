@@ -13,13 +13,13 @@
 
   <ion-toolbar >
     <ion-segment class="segmento" [(ngModel)]="componente_actual"  (ngModelChange)="cambiarComponente($event)">
-      <ion-segment-button value="qr" class="titulo-seg">
+      <ion-segment-button *ngIf="!esUsuarioAdmin" value="qr" class="titulo-seg">
         <ion-label>
           QR
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="miclase" class="titulo-seg">
+      <ion-segment-button *ngIf="!esUsuarioAdmin" value="miclase" class="titulo-seg">
         <ion-label>
           Mi Clase
         </ion-label>
@@ -37,7 +37,7 @@
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="admin" class="titulo-seg">
+      <ion-segment-button *ngIf="esUsuarioAdmin"  value="admin" class="titulo-seg">
         <ion-label>
           ADMIN
         </ion-label>
@@ -48,18 +48,11 @@
 </ion-header>
 
 <ion-content>
-  <app-qr [hidden]="componente_actual !== 'qr'" (qrCapturado)="cambiarComponente('miclase')">
-  </app-qr>
-
-  <app-miclase [hidden]="componente_actual !== 'miclase'">
-  </app-miclase>
-
-  <app-foro [hidden]="componente_actual !== 'foro'">
-  </app-foro>
-
-  <app-misdatos [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
-
-  <app-admin [hidden]="componente_actual !== 'admin'"></app-admin>
+  <app-qr *ngIf="!esUsuarioAdmin" [hidden]="componente_actual !== 'qr'" (qrCapturado)="cambiarComponente('miclase')"></app-qr>
+  <app-miclase *ngIf="!esUsuarioAdmin" [hidden]="componente_actual !== 'miclase'"></app-miclase>
+  <app-foro *ngIf="true" [hidden]="componente_actual !== 'foro'"></app-foro>
+  <app-misdatos *ngIf="true" [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
+  <app-admin *ngIf="esUsuarioAdmin" [hidden]="componente_actual !== 'admin'"></app-admin>
 </ion-content>
 
 <ion-footer>

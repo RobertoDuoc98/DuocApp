@@ -47,22 +47,32 @@ export class AuthService {
 
  
   async login(correo: string, password: string) {
-    await this.storage.get(this.keyUsuario).then( async (usuarioAutenticado) => {
+    await this.storage.get(this.keyUsuario).then(async (usuarioAutenticado) => {
       if (usuarioAutenticado) {
         this.usuarioAutenticado.next(usuarioAutenticado);
         this.primerInicioSesion.next(false);
-        // Verificar si el usuario es el administrador
-        if (usuarioAutenticado.correo === 'admin@duocuc.cl') {
-          // Mostrar todos los usuarios
+  
+        // Verificar el rol del usuario autenticado
+        if (usuarioAutenticado.rol === 'admin') {
+          // Mostrar todos los usuarios solo si el usuario autenticado es el administrador
           this.bd.leerUsuarios().then(usuarios => {
             console.log('Todos los usuarios:', usuarios);
           });
         }
+  
         this.router.navigate(['inicio']);
       } else {
         await this.bd.validarUsuario(correo, password).then(async (usuario: Usuario | undefined) => {
           if (usuario) {
             showToast(`¡Bienvenido ${usuario.nombre} ${usuario.apellido}!`);
+  
+            // Actualizar el rol del usuario después de autenticar
+            if (usuario.correo === 'admin@duocuc.cl') {
+              usuario.rol = 'admin';
+            } else {
+              usuario.rol = 'estudiante';
+            }
+  
             this.guardarUsuarioAutenticado(usuario);
             this.primerInicioSesion.next(true);
             this.router.navigate(['inicio']);
@@ -70,9 +80,9 @@ export class AuthService {
             showToast(`El correo o la password son incorrectos`);
             this.router.navigate(['ingreso']);
           }
-        })
+        });
       }
-    })
+    });
   }
 
   async logout() {

@@ -26,6 +26,7 @@ export class InicioPage implements OnInit {
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
 
   componente_actual = 'qr';
+  esUsuarioAdmin: boolean = false;
 
   constructor(
     private authService: AuthService, 
@@ -33,36 +34,43 @@ export class InicioPage implements OnInit {
     private api: ApiClientService,
     private animationController: AnimationController) { }
 
-  ngOnInit() {
-    this.authService.primerInicioSesion.subscribe(esPrimerInicioSesion => {
-      this.componente_actual = 'qr';
-      this.bd.datosQR.next('');
-    });
-  }
-
-  cambiarComponente(nombreComponente: string) {
-    this.componente_actual = nombreComponente;
-    if (nombreComponente === 'foro') this.api.cargarPublicaciones();
-    if (nombreComponente === 'misdatos') this.authService.leerUsuarioAutenticado();
-  }
+    ngOnInit() {
+      this.authService.usuarioAutenticado.subscribe((usuario) => {
+        this.esUsuarioAdmin = usuario?.rol === 'admin';
+      });
+    
+      this.authService.primerInicioSesion.subscribe((esPrimerInicioSesion) => {
+        if (this.esUsuarioAdmin) {
+          this.componente_actual = 'foro';
+        } else {
+          this.componente_actual = 'qr';
+        }
+        this.bd.datosQR.next('');
+      });
+    }
+  
+    cambiarComponente(nombreComponente: string) {
+      this.componente_actual = nombreComponente;
+      if (nombreComponente === 'foro') this.api.cargarPublicaciones();
+      if (nombreComponente === 'misdatos') this.authService.leerUsuarioAutenticado();
+    }
+  
     ////// ANIMACION TITULO  /////////
-  public ngAfterViewInit(): void {
-    if (this.itemTitulo) {
-      const animation = this.animationController
-        .create()
-        .addElement(this.itemTitulo.nativeElement)
-        .iterations(Infinity)
-        .duration(8000)
-        .fromTo('transform', 'translate(-100%)', 'translate(100%)')
-        .fromTo('opacity', 1, 1);
-
-      animation.play();
+    public ngAfterViewInit(): void {
+      if (this.itemTitulo) {
+        const animation = this.animationController
+          .create()
+          .addElement(this.itemTitulo.nativeElement)
+          .iterations(Infinity)
+          .duration(8000)
+          .fromTo('transform', 'translate(-100%)', 'translate(100%)')
+          .fromTo('opacity', 1, 1);
+  
+        animation.play();
+      }
+    }
+  
+    cerrarSesion() {
+      this.authService.logout();
     }
   }
-
-
-  cerrarSesion() {
-    this.authService.logout();
-  }
-
-}

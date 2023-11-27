@@ -6,6 +6,8 @@ export class Usuario {
   apellido: string = '';
   preguntaSecreta: string = '';
   respuestaSecreta: string = '';
+  rol: 'admin' | 'estudiante' = 'estudiante';  
+  // Agregar la propiedad 'rol' para los componentes
   
     constructor() { }
   
