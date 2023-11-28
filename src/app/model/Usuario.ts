@@ -7,8 +7,8 @@ export class Usuario {
   preguntaSecreta: string = '';
   respuestaSecreta: string = '';
   rol: 'admin' | 'estudiante' = 'estudiante';  
-  // Agregar la propiedad 'rol' para los componentes
-  
+  // Se agrega la propiedad 'rol' para los componentes
+
     constructor() { }
   
     setUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string, respuestaSecreta: string) {

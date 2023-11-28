@@ -14,6 +14,9 @@ export class AuthService {
   keyUsuario = 'USUARIO_AUTENTICADO';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
   primerInicioSesion = new BehaviorSubject<boolean>(false);
+
+  private nombreUsuario: string = '';
+  private apellidoUsuario: string = '';
  
 
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { 
@@ -84,6 +87,20 @@ export class AuthService {
       }
     });
   }
+
+
+  // Método para establecer el nombre y apellido del usuario
+  setDatosUsuario(nombre: string, apellido: string) {
+    this.nombreUsuario = nombre;
+    this.apellidoUsuario = apellido;
+  }
+
+  // Método para obtener el nombre y apellido del usuario
+  getDatosUsuario(): { nombre: string, apellido: string } {
+    return { nombre: this.nombreUsuario, apellido: this.apellidoUsuario };
+  }
+
+
 
   async logout() {
     this.leerUsuarioAutenticado().then((usuario) => {

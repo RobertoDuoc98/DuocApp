@@ -38,6 +38,9 @@ export class CorreoPage implements OnInit {
 
     await this.bd.validarCorreo(correo).then(async (usuario : Usuario | undefined) => {
       if (usuario){
+
+        this.authService.setDatosUsuario(usuario.nombre, usuario.apellido);
+
         this.router.navigate(['/pregunta'], {queryParams : {pregunta: usuario.preguntaSecreta}});
         console.log(usuario)
       } else {

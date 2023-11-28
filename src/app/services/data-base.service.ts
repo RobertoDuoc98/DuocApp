@@ -102,6 +102,11 @@ async validarPregunta(preguntaSecreta: string): Promise<Usuario | undefined> {
 } 
 
 //Encontrar nombre usuario
+async validarNombre(respuestaSecreta: string): Promise<Usuario | undefined> {
+  const usuarios: Usuario[] = (await this.db.query('SELECT nombre, apellido FROM USUARIO WHERE respuestaSecreta=?;', 
+  [respuestaSecreta])).values as Usuario[];
+  return usuarios[0];
+}
 
 
 //validar respuesta
