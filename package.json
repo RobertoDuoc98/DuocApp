@@ -42,6 +42,7 @@
     "jeep-sqlite": "^2.5.3",
     "jsqr": "^1.4.0",
     "native-run": "^1.7.3",
+    "protractor": "^7.0.0",
     "rxjs": "^7.4.0",
     "sass": "^1.69.4",
     "sql.js": "^1.8.0",
@@ -64,6 +65,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "cypress": "^13.6.0",
     "eslint": "^7.26.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
@@ -80,5 +82,8 @@
     "ts-node": "^8.3.0",
     "typescript": "^5.0.4"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "jshintConfig": {
+    "esversion": 6
+  }
 }

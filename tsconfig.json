@@ -1,5 +1,5 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
-{
+{ 
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -10,7 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -19,6 +19,7 @@
     "target": "es2022",
     "module": "es2020",
     "lib": ["es2018", "dom"],
+    "types": ["cypress"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
@@ -27,4 +28,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   }
+  
 }
