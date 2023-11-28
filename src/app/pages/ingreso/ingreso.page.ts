@@ -18,8 +18,8 @@ import { Router } from '@angular/router'; // Permite navegar y pasar parámetros
 export class IngresoPage implements OnInit {
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
 
-  correo = 'atorres@duocuc.cl';
-  password = '1234';
+  correo = '';
+  password = '';
 
   constructor(private router: Router,
     private bd: DataBaseService, 
