@@ -9,7 +9,7 @@
     </ion-card-header>
 
     <ion-item class="ion-padding-horizontal">
-      <ion-input id="titulop" [(ngModel)]="publicacion.titulo" label="Título" labelPlacement="floating"></ion-input>
+      <ion-input id="titulo" [(ngModel)]="publicacion.titulo" label="Título" labelPlacement="floating"></ion-input>
     </ion-item>
 
     <ion-item class="ion-padding-horizontal">
@@ -17,8 +17,8 @@
     </ion-item>
 
     <div class="alinear-centro">
-      <ion-button class="botonduoc ion-auto" (click)="limpiarPublicacion()">Limpiar</ion-button>
-      <ion-button class="botonduoc ion-auto" (click)="guardarPublicacion()">Guardar</ion-button>
+      <ion-button id="limpiar" class="botonduoc ion-auto" (click)="limpiarPublicacion()">Limpiar</ion-button>
+      <ion-button id="guardar" class="botonduoc ion-auto" (click)="guardarPublicacion()">Guardar</ion-button>
     </div>
 
   </ion-card>
@@ -47,11 +47,11 @@
 
     <!--BOTONES-->
     <div class="alinear-derecha">
-      <ion-button class="botonduoc ion-auto" (click)="editarPublicacion(pub)">
+      <ion-button id="editar" class="botonduoc ion-auto" (click)="editarPublicacion(pub)">
         Editar
       </ion-button>
 
-      <ion-button class="botonduoc ion-auto" (click)="eliminarPublicacion(pub)">
+      <ion-button id="eliminar" class="botonduoc ion-auto" (click)="eliminarPublicacion(pub)">
         Eliminar
       </ion-button>
     </div>

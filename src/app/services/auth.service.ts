@@ -100,8 +100,6 @@ export class AuthService {
     return { nombre: this.nombreUsuario, apellido: this.apellidoUsuario };
   }
 
-
-
   async logout() {
     this.leerUsuarioAutenticado().then((usuario) => {
       if (usuario) {

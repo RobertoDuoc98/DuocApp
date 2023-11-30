@@ -9,36 +9,36 @@
       </h2>
           <ion-card-content class="colorcard1">
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" disabled="true"></ion-input>
+              <ion-input id="correo" type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating" disabled="true"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
+              <ion-input id="nombre" type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating"></ion-input>
+              <ion-input id="apellidos" type="text" [(ngModel)]="usuario.apellido" label="Apellidos" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta" labelPlacement="floating"></ion-input>
+              <ion-input id="pregunta" type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta" labelPlacement="floating"></ion-input>
+              <ion-input id="respuesta" type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating"></ion-input>
+              <ion-input id="contraseña" type="password" [(ngModel)]="usuario.password" label="Contraseña" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <ion-item>
-              <ion-input type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña" labelPlacement="floating"></ion-input>
+              <ion-input id="contraseñaRepetida" type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña" labelPlacement="floating"></ion-input>
             </ion-item>
           
             <br>
           
-              <ion-button class="botonduoc" (click)="actualizarPerfil()">
+              <ion-button id="Actualizar" class="botonduoc" (click)="actualizarPerfil()">
                 Actualizar mis datos
               </ion-button>
           

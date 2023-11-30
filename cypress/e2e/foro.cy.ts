@@ -1,18 +1,47 @@
+describe('Realizacion de pruebas en FORO', () => {
 
-// PRUEBAS EN COMPONENTE FORO
-it('Verificar publicación en foro', () => {
-  cy.wait(3000);
-  cy.visit('http://localhost:8100/inicio').then(() => {
-    cy.wait(2000);
-    cy.contains('foro').click();
-    cy.wait(2000);
-      cy.get('#titulop').invoke('val', 'Hola');
-      cy.wait(2000);
-      cy.get('#contenido').invoke('val', 'Esta es mi primera publicacion');
-      cy.wait(2000);
-      cy.contains('Guardar').click();
-    cy.wait(20000);
-  
+  const numero = Math.floor(Math.random() * 1000000) + 1;
+
+  it('Verificar publicación en foro', () => {
+    cy.visit('http://localhost:8100/ingreso').then(() => {
+      cy.wait(1500);
+      cy.get('#correo').invoke('val', '');
+      cy.get('#correo').type('admin@duocuc.cl');
+      cy.get('#password').invoke('val', '');
+      cy.get('#password').type('admin');
+      cy.contains('Ingresar').click();
+      cy.intercept('/inicio').as('route').then(() => {
+        cy.get('[ng-reflect-value="foro"]').click();
+        cy.get('#titulo').type(`Título de prueba ${numero}`);
+        cy.get('#contenido').type(`Contenido de prueba ${numero}`);
+        cy.contains('Guardar').click();
+        cy.wait(3000);
+        cy.contains(`Título de prueba ${numero}`).should('exist');
+        cy.wait(3000);
+      });
     });
-  });
+  })
+  
+  it(`Verificar eliminación en foro de la última publicación con el título que contiene ${numero}`, () => {
+    cy.visit('http://localhost:8100/ingreso').then(() => {
+      cy.wait(1500);
+      cy.get('#correo').invoke('val', '');
+      cy.get('#correo').type('atorres@duocuc.cl');
+      cy.get('#password').invoke('val', '');
+      cy.get('#password').type('1234');
+      cy.contains('Ingresar').click();
+      cy.intercept('/inicio').as('route').then(() => {
+        cy.get('[ng-reflect-value="foro"]').click();
+        cy.contains('Borrar').click();
+        cy.wait(3000);
+        cy.contains('Aceptar').click();
+        cy.wait(3000);
+        cy.contains(`Título de prueba ${numero}`).should('not.exist');
+        cy.wait(3000);
+      });
+    });
+  })
 
+  
+
+});
