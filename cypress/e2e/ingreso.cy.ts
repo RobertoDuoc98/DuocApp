@@ -11,6 +11,7 @@ describe('Realización de pruebas de ingreso', () => {
       cy.get('#password').type('1234');
       cy.wait(2000);
       cy.contains('Ingresar').click();
+      cy.wait(3000);
     });
   });
 

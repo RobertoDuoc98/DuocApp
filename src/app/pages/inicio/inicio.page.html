@@ -25,7 +25,7 @@
         </ion-label>
       </ion-segment-button>
 
-      <ion-segment-button value="foro" class="titulo-seg">
+      <ion-segment-button id="foro" value="foro" class="titulo-seg">
         <ion-label>
           Foro
         </ion-label>
@@ -50,7 +50,7 @@
 <ion-content>
   <app-qr *ngIf="!esUsuarioAdmin" [hidden]="componente_actual !== 'qr'" (qrCapturado)="cambiarComponente('miclase')"></app-qr>
   <app-miclase *ngIf="!esUsuarioAdmin" [hidden]="componente_actual !== 'miclase'"></app-miclase>
-  <app-foro  *ngIf="true" [hidden]="componente_actual !== 'foro'"></app-foro>
+  <app-foro id="foro" *ngIf="true" [hidden]="componente_actual !== 'foro'"></app-foro>
   <app-misdatos *ngIf="true" [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
   <app-admin *ngIf="esUsuarioAdmin" [hidden]="componente_actual !== 'admin'"></app-admin>
 </ion-content>

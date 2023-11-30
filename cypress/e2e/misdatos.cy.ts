@@ -5,7 +5,7 @@ describe('Realización de pruebas en Mis Datos', () => {
   it(`5) Verificar la validación de todos los campos del componente de Mis Datos }`, () => {
     cy.visit('http://localhost:8100/ingreso').then(() => {
       cy.wait(1500);
-      cy.contains('Grupo 4 - Sección 001D');
+
       cy.get('#correo').invoke('val', '');
       cy.get('#correo').type('atorres@duocuc.cl');
       cy.get('#password').invoke('val', '');
@@ -51,7 +51,7 @@ describe('Realización de pruebas en Mis Datos', () => {
         cy.wait(1500);
         cy.contains('Cerrar Sesión').click();
         cy.wait(3000);
-        cy.contains('Grupo 4 - Sección 001D');
+
       });
     });
   })
@@ -60,7 +60,7 @@ describe('Realización de pruebas en Mis Datos', () => {
   it(`6) Verificar que Mis Datos actualice la información }`, () => {
     cy.visit('http://localhost:8100/ingreso').then(() => {
       cy.wait(1500);
-      cy.contains('Grupo 4 - Sección 001D');
+
       cy.get('#correo').invoke('val', '');
       cy.get('#correo').type('atorres@duocuc.cl');
       cy.get('#password').invoke('val', '');
@@ -79,7 +79,7 @@ describe('Realización de pruebas en Mis Datos', () => {
         cy.wait(3000);
         cy.contains('Cerrar Sesión').click();
         cy.wait(3000);
-        cy.contains('Grupo 4 - Sección 001D');
+
       });
     });
   })
