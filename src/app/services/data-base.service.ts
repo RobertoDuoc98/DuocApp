@@ -40,7 +40,7 @@ export class DataBaseService {
     
     async crearUsuarioAdmin() {
       const adminUsuario = new Usuario();
-      adminUsuario.setUsuario('admin@duocuc.cl', 'admin', 'Administrador del Sistema', '', '', '');
+      adminUsuario.setUsuario('admin@duocuc.cl', 'admin', 'Administrador', 'del Sistema', 'Cargo', 'admin');
   
       await this.guardarUsuario(adminUsuario);
     }

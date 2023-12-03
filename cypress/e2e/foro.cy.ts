@@ -11,8 +11,11 @@ describe('Realizacion de pruebas en FORO', () => {
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
         cy.get('#foro').click();
+        cy.wait(3000);
         cy.get('#titulo').type(`Título de prueba ${customText}`);
+        cy.wait(3000);
         cy.get('#contenido').type(`Contenido de prueba ${customText}`);
+        cy.wait(3000);
         cy.contains('Guardar').click();
         cy.wait(3000);
         cy.contains(`Título de prueba ${customText}`).should('exist');
@@ -23,7 +26,7 @@ describe('Realizacion de pruebas en FORO', () => {
 
   it('Verificar eliminación en foro de la última publicación', () => {
     cy.visit('http://localhost:8100/ingreso').then(() => {
-      cy.wait(1500);
+      cy.wait(3000);
       cy.log(`Deleting post with title: ${customText}`);
       cy.wait(3000);
       cy.get('#eliminar').click();

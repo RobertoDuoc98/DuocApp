@@ -25,7 +25,7 @@ it('Verificar login con credenciales correctas', () => {
     cy.wait(1500);
     cy.contains('Ingresar').click();
     cy.wait(3000)
-  });
+});
 });
 
 });

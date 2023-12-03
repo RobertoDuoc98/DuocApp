@@ -30,7 +30,7 @@ export class MisdatosComponent  implements OnInit {
 
   validarCampo(nombreCampo:string, valor: string) {
     if (valor.trim() === '') {
-      showAlertDUOC(`Debe ingresar un valor para el campo "${nombreCampo}".`);
+      showToast(`Debe ingresar un valor para el campo "${nombreCampo}".`);
       return false;
     }
     return true;
