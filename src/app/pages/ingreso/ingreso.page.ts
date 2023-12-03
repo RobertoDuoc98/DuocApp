@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { DataBaseService } from 'src/app/services/data-base.service';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { Router } from '@angular/router'; // Permite navegar y pasar parámetros extra entre páginas
+import { Router } from '@angular/router'; 
 
 
 @Component({
