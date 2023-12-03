@@ -14,7 +14,6 @@ describe('IngresoPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IngresoPage],
       imports: [IonicModule.forRoot()],
       providers: [
         AuthService,
@@ -38,7 +37,7 @@ describe('IngresoPage', () => {
     fixture.detectChanges();
   });
 
-  it('debería crearse', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
@@ -48,14 +47,14 @@ describe('IngresoPage', () => {
   });
 
   it('debería actualizar correo y contraseña cuando cambian los inputs', () => {
-    const nuevoCorreo = 'test@test.com';
-    const nuevaContraseña = 'password123';
+    const newCorreo = 'test@test.com';
+    const newPassword = 'password123';
 
-    component.correo = nuevoCorreo;
-    component.password = nuevaContraseña;
+    component.correo = newCorreo;
+    component.password = newPassword;
 
-    expect(component.correo).toEqual(nuevoCorreo);
-    expect(component.password).toEqual(nuevaContraseña);
+    expect(component.correo).toEqual(newCorreo);
+    expect(component.password).toEqual(newPassword);
   });
 
   it('debería navegar a /correo en recuperar()', () => {
